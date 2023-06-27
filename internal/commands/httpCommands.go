@@ -55,7 +55,7 @@ func getHttpCommands() map[string]httpCommand {
 }
 
 func cleanInput(str string) []string {
-    lowerCase := strings.ToLower(str)
-    words := strings.Fields(lowerCase)
-    return words
+	lowerCase := strings.ToLower(str)
+	words := strings.Fields(lowerCase)
+	return words
 }
