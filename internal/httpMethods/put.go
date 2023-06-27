@@ -6,8 +6,17 @@ import (
 	"net/http"
 
 	"github.com/abdullah-alaadine/http-client/internal/utilities"
-
 )
+
+// RunPut executes the PUT request using the provided input parameters.
+func RunPut(input []string) (*http.Response, error) {
+	url, body, headers, err := parsePutInput(input)
+	if err != nil {
+		return nil, err
+	}
+
+	return put(url, body, headers)
+}
 
 // Put sends an HTTP PUT request.
 func put(url string, body []byte, headers map[string]string) (*http.Response, error) {
