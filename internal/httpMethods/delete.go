@@ -1,11 +1,14 @@
-package client
+package httpmethods
 
 import (
 	"net/http"
 )
 
 // Delete sends an HTTP DELETE request.
-func (c *Client) Delete(url string, headers map[string]string) (*http.Response, error) {
+func Delete(url string, headers map[string]string) (*http.Response, error) {
+	// Create a new HTTP client
+	httpClient := &http.Client{}
+
 	// Create an HTTP request
 	httpRequest, err := http.NewRequest(http.MethodDelete, url, nil)
 	if err != nil {
@@ -18,7 +21,7 @@ func (c *Client) Delete(url string, headers map[string]string) (*http.Response, 
 	}
 
 	// Send the HTTP request
-	httpResponse, err := c.httpClient.Do(httpRequest)
+	httpResponse, err := httpClient.Do(httpRequest)
 	if err != nil {
 		return nil, err
 	}
