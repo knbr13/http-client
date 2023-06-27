@@ -5,7 +5,7 @@ import (
 )
 
 // Delete sends an HTTP DELETE request.
-func Delete(url string, headers map[string]string) (*http.Response, error) {
+func Delete(url string, body []byte, headers map[string]string) (*http.Response, error) {
 	// Create a new HTTP client
 	httpClient := &http.Client{}
 
@@ -25,7 +25,6 @@ func Delete(url string, headers map[string]string) (*http.Response, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer httpResponse.Body.Close()
 
 	return httpResponse, nil
 }
