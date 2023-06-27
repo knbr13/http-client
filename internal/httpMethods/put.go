@@ -1,4 +1,4 @@
-package client
+package httpmethods
 
 import (
 	"bytes"
@@ -6,9 +6,12 @@ import (
 )
 
 // Put sends an HTTP PUT request.
-func (c *Client) Put(url string, body []byte, headers map[string]string) (*http.Response, error) {
+func Put(url string, body []byte, headers map[string]string) (*http.Response, error) {
+	// Create a new HTTP client
+	httpClient := &http.Client{}
+
 	// Create an HTTP request with the request body
-	httpRequest, err := http.NewRequest(http.MethodPut, url, bytes.NewBuffer(body))
+	httpRequest, err := http.NewRequest(http.MethodPut, url, bytes.NewReader(body))
 	if err != nil {
 		return nil, err
 	}
@@ -19,11 +22,10 @@ func (c *Client) Put(url string, body []byte, headers map[string]string) (*http.
 	}
 
 	// Send the HTTP request
-	httpResponse, err := c.httpClient.Do(httpRequest)
+	httpResponse, err := httpClient.Do(httpRequest)
 	if err != nil {
 		return nil, err
 	}
-	defer httpResponse.Body.Close()
 
 	return httpResponse, nil
 }
