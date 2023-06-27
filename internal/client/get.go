@@ -1,12 +1,11 @@
 package client
 
 import (
-	"io"
 	"net/http"
 )
 
 // Get sends an HTTP GET request.
-func (c *Client) Get(url string, headers map[string]string) ([]byte, error) {
+func (c *Client) Get(url string, headers map[string]string) (*http.Response, error) {
 	// Create an HTTP request
 	httpRequest, err := http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
@@ -25,11 +24,5 @@ func (c *Client) Get(url string, headers map[string]string) ([]byte, error) {
 	}
 	defer httpResponse.Body.Close()
 
-	// Read the response body
-	responseBody, err := io.ReadAll(httpResponse.Body)
-	if err != nil {
-		return nil, err
-	}
-
-	return responseBody, nil
+	return httpResponse, nil
 }

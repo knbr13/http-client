@@ -5,7 +5,7 @@ import (
 )
 
 // Head sends an HTTP HEAD request.
-func (c *Client) Head(url string, headers map[string]string) (http.Header, error) {
+func (c *Client) Head(url string, headers map[string]string) (*http.Response, error) {
 	// Create an HTTP request
 	httpRequest, err := http.NewRequest(http.MethodHead, url, nil)
 	if err != nil {
@@ -22,7 +22,6 @@ func (c *Client) Head(url string, headers map[string]string) (http.Header, error
 	if err != nil {
 		return nil, err
 	}
-	defer httpResponse.Body.Close()
 
-	return httpResponse.Header, nil
+	return httpResponse, nil
 }

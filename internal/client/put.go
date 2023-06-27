@@ -2,12 +2,11 @@ package client
 
 import (
 	"bytes"
-	"io"
 	"net/http"
 )
 
 // Put sends an HTTP PUT request.
-func (c *Client) Put(url string, body []byte, headers map[string]string) ([]byte, error) {
+func (c *Client) Put(url string, body []byte, headers map[string]string) (*http.Response, error) {
 	// Create an HTTP request with the request body
 	httpRequest, err := http.NewRequest(http.MethodPut, url, bytes.NewBuffer(body))
 	if err != nil {
@@ -26,11 +25,5 @@ func (c *Client) Put(url string, body []byte, headers map[string]string) ([]byte
 	}
 	defer httpResponse.Body.Close()
 
-	// Read the response body
-	responseBody, err := io.ReadAll(httpResponse.Body)
-	if err != nil {
-		return nil, err
-	}
-
-	return responseBody, nil
+	return httpResponse, nil
 }
