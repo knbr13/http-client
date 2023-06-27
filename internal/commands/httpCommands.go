@@ -1,6 +1,10 @@
 package commands
 
-import "net/http"
+import (
+	"net/http"
+
+	"github.com/abdullah-alaadine/http-client/internal/httpmethods"
+)
 
 type httpCommand struct {
 	name        string
@@ -13,13 +17,12 @@ func getHttpCommands() map[string]httpCommand {
 		"httpget": {
 			name:        "httpget",
 			description: "Sends an HTTP GET request",
-			run:         Get,
+			run:         httpmethods.Get,
 		},
 		"httppost": {
 			name:        "httppost",
 			description: "Sends an HTTP POST request",
-			run:         Post,
+			run:         httpmethods.Post,
 		},
-		// Add more commands here...
 	}
 }
