@@ -7,8 +7,18 @@ import (
 	"github.com/abdullah-alaadine/http-client/internal/utilities"
 )
 
+// RunGet executes the GET request using the provided input parameters.
+func RunGet(input []string) (*http.Response, error) {
+	url, headers, err := parseGetInput(input)
+	if err != nil {
+		return nil, err
+	}
+
+	return get(url, nil, headers)
+}
+
 // Get sends an HTTP GET request.
-func Get(url string, body []byte, headers map[string]string) (*http.Response, error) {
+func get(url string, body []byte, headers map[string]string) (*http.Response, error) {
 	// Create an HTTP request
 	httpRequest, err := http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
