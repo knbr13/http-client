@@ -1,11 +1,14 @@
-package client
+package httpmethods
 
 import (
 	"net/http"
 )
 
 // Options sends an HTTP OPTIONS request.
-func (c *Client) Options(url string, headers map[string]string) (*http.Response, error) {
+func Options(url string, body []byte, headers map[string]string) (*http.Response, error) {
+	// Create a new HTTP client
+	httpClient := &http.Client{}
+
 	// Create an HTTP request
 	httpRequest, err := http.NewRequest(http.MethodOptions, url, nil)
 	if err != nil {
@@ -18,11 +21,10 @@ func (c *Client) Options(url string, headers map[string]string) (*http.Response,
 	}
 
 	// Send the HTTP request
-	httpResponse, err := c.httpClient.Do(httpRequest)
+	httpResponse, err := httpClient.Do(httpRequest)
 	if err != nil {
 		return nil, err
 	}
-	defer httpResponse.Body.Close()
 
 	return httpResponse, nil
 }
