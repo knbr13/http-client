@@ -8,6 +8,16 @@ import (
 	"github.com/abdullah-alaadine/http-client/internal/utilities"
 )
 
+// RunPost executes the POST request using the provided input parameters.
+func RunPost(input []string) (*http.Response, error) {
+	url, body, headers, err := parsePostInput(input)
+	if err != nil {
+		return nil, err
+	}
+
+	return post(url, body, headers)
+}
+
 // Post sends an HTTP POST request.
 func post(url string, body []byte, headers map[string]string) (*http.Response, error) {
 	// Create a new HTTP client
@@ -40,11 +50,16 @@ func parsePostInput(input []string) (string, []byte, map[string]string, error) {
 	}
 
 	url := input[0]
-	body := []byte(input[1])
+	bodyStr := input[1]
 	headersStr := ""
 
 	if len(input) == 3 {
 		headersStr = input[2]
+	}
+
+	body, err := utilities.ParseBody(bodyStr)
+	if err != nil {
+		return "", nil, nil, err
 	}
 
 	headers, err := utilities.ParseHeaders(headersStr)
