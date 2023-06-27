@@ -7,8 +7,18 @@ import (
 	"github.com/abdullah-alaadine/http-client/internal/utilities"
 )
 
+// RunDelete executes the DELETE request using the provided input parameters.
+func RunDelete(input []string) (*http.Response, error) {
+	url, headers, err := parseDeleteInput(input)
+	if err != nil {
+		return nil, err
+	}
+
+	return delete(url, nil, headers)
+}
+
 // Delete sends an HTTP DELETE request.
-func Delete(url string, body []byte, headers map[string]string) (*http.Response, error) {
+func delete(url string, body []byte, headers map[string]string) (*http.Response, error) {
 	// Create a new HTTP client
 	httpClient := &http.Client{}
 
