@@ -9,7 +9,7 @@ import (
 type httpCommand struct {
 	name        string
 	description string
-	run         func(string, []byte, map[string]string) (*http.Response, error)
+	run         func([]string) (*http.Response, error)
 }
 
 func getHttpCommands() map[string]httpCommand {
@@ -17,38 +17,37 @@ func getHttpCommands() map[string]httpCommand {
 		"httpget": {
 			name:        "httpget",
 			description: "Sends HTTP GET request",
-			run:         httpmethods.Get,
+			run:         httpmethods.RunGet,
 		},
 		"httppost": {
 			name:        "httppost",
 			description: "Sends HTTP POST request",
-			run:         httpmethods.Post,
+			run:         httpmethods.RunPost,
 		},
 		"httpput": {
 			name:        "httpput",
 			description: "Sends HTTP PUT request",
-			run:         httpmethods.Put,
+			run:         httpmethods.RunPut,
 		},
 		"httpdelete": {
 			name:        "httpdelete",
 			description: "Sends HTTP DELETE request",
-			run:         httpmethods.Delete,
+			run:         httpmethods.RunDelete,
 		},
 		"httppatch": {
 			name:        "httppatch",
 			description: "Sends HTTP PATCH request",
-			run:         httpmethods.Patch,
+			run:         httpmethods.RunPatch,
 		},
 		"httpoptions": {
 			name:        "httpoptions",
 			description: "Sends HTTP OPTIONS request",
-			run:         httpmethods.Options,
+			run:         httpmethods.RunOptions,
 		},
 		"httphead": {
 			name:        "httphead",
 			description: "Sends HTTP HEAD request",
-			run:         httpmethods.Head,
+			run:         httpmethods.RunHead,
 		},
 	}
-
 }
