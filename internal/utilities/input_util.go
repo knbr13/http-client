@@ -1,6 +1,7 @@
 package utilities
 
 import (
+	"encoding/json"
 	"fmt"
 	"strings"
 )
@@ -34,6 +35,30 @@ func ParseHeaders(headersStr string) (map[string]string, error) {
 	}
 
 	return headers, nil
+}
+
+// ParseBody parses the input body string into a JSON byte slice.
+func ParseBody(bodyStr string) ([]byte, error) {
+	bodyStr = strings.TrimSpace(bodyStr)
+
+	if len(bodyStr) == 0 {
+		return nil, fmt.Errorf("body is required")
+	}
+
+	if !strings.HasPrefix(bodyStr, "body={") || !strings.HasSuffix(bodyStr, "}") {
+		return nil, fmt.Errorf("invalid body format: %s", bodyStr)
+	}
+
+	bodyStr = strings.TrimPrefix(bodyStr, "body={")
+	bodyStr = strings.TrimSuffix(bodyStr, "}")
+
+	// Convert the body map to JSON bytes
+	jsonBody, err := json.Marshal(bodyStr)
+	if err != nil {
+		return nil, fmt.Errorf("failed to marshal body as JSON: %w", err)
+	}
+
+	return jsonBody, nil
 }
 
 func CleanInput(str string) []string {
