@@ -16,13 +16,39 @@ func getHttpCommands() map[string]httpCommand {
 	return map[string]httpCommand{
 		"httpget": {
 			name:        "httpget",
-			description: "Sends an HTTP GET request",
+			description: "Sends HTTP GET request",
 			run:         httpmethods.Get,
 		},
 		"httppost": {
 			name:        "httppost",
-			description: "Sends an HTTP POST request",
+			description: "Sends HTTP POST request",
 			run:         httpmethods.Post,
 		},
+		"httpput": {
+			name:        "httpput",
+			description: "Sends HTTP PUT request",
+			run:         httpmethods.Put,
+		},
+		"httpdelete": {
+			name:        "httpdelete",
+			description: "Sends HTTP DELETE request",
+			run:         httpmethods.Delete,
+		},
+		"httppatch": {
+			name:        "httppatch",
+			description: "Sends HTTP PATCH request",
+			run:         httpmethods.Patch,
+		},
+		"httpoptions": {
+			name:        "httpoptions",
+			description: "Sends HTTP OPTIONS request",
+			run:         httpmethods.Options,
+		},
+		"httphead": {
+			name:        "httphead",
+			description: "Sends HTTP HEAD request",
+			run:         httpmethods.Head,
+		},
 	}
+
 }
