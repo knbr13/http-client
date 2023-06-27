@@ -2,6 +2,7 @@ package commands
 
 import (
 	"net/http"
+	"strings"
 
 	"github.com/abdullah-alaadine/http-client/internal/httpmethods"
 )
@@ -51,4 +52,10 @@ func getHttpCommands() map[string]httpCommand {
 		},
 	}
 
+}
+
+func cleanInput(str string) []string {
+    lowerCase := strings.ToLower(str)
+    words := strings.Fields(lowerCase)
+    return words
 }
