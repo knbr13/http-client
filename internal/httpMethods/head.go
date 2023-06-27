@@ -1,11 +1,14 @@
-package client
+package httpmethods
 
 import (
 	"net/http"
 )
 
 // Head sends an HTTP HEAD request.
-func (c *Client) Head(url string, headers map[string]string) (*http.Response, error) {
+func Head(url string, body []byte, headers map[string]string) (*http.Response, error) {
+	// Create a new HTTP client
+	httpClient := &http.Client{}
+
 	// Create an HTTP request
 	httpRequest, err := http.NewRequest(http.MethodHead, url, nil)
 	if err != nil {
@@ -18,7 +21,7 @@ func (c *Client) Head(url string, headers map[string]string) (*http.Response, er
 	}
 
 	// Send the HTTP request
-	httpResponse, err := c.httpClient.Do(httpRequest)
+	httpResponse, err := httpClient.Do(httpRequest)
 	if err != nil {
 		return nil, err
 	}
