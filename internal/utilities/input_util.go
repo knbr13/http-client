@@ -35,3 +35,9 @@ func ParseHeaders(headersStr string) (map[string]string, error) {
 
 	return headers, nil
 }
+
+func CleanInput(str string) []string {
+	lowerCase := strings.ToLower(str)
+	words := strings.Fields(lowerCase)
+	return words
+}
