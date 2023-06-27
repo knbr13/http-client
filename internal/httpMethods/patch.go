@@ -8,8 +8,18 @@ import (
 	"github.com/abdullah-alaadine/http-client/internal/utilities"
 )
 
+// RunPatch executes the PATCH request using the provided input parameters.
+func RunPatch(input []string) (*http.Response, error) {
+	url, body, headers, err := parsePatchInput(input)
+	if err != nil {
+		return nil, err
+	}
+
+	return patch(url, body, headers)
+}
+
 // Patch sends an HTTP PATCH request.
-func Patch(url string, body []byte, headers map[string]string) (*http.Response, error) {
+func patch(url string, body []byte, headers map[string]string) (*http.Response, error) {
 	// Create a new HTTP client
 	httpClient := &http.Client{}
 
