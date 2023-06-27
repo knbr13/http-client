@@ -1,14 +1,11 @@
-package client
+package httpmethods
 
 import (
 	"net/http"
 )
 
 // Get sends an HTTP GET request.
-func Get(url string, headers map[string]string) (*http.Response, error) {
-	// Create a new HTTP client
-	httpClient := &http.Client{}
-
+func Get(url string, body []byte, headers map[string]string) (*http.Response, error) {
 	// Create an HTTP request
 	httpRequest, err := http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
@@ -21,11 +18,11 @@ func Get(url string, headers map[string]string) (*http.Response, error) {
 	}
 
 	// Send the HTTP request
+	httpClient := &http.Client{}
 	httpResponse, err := httpClient.Do(httpRequest)
 	if err != nil {
 		return nil, err
 	}
-	defer httpResponse.Body.Close()
 
 	return httpResponse, nil
 }
