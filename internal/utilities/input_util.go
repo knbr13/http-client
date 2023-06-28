@@ -52,13 +52,28 @@ func ParseBody(bodyStr string) ([]byte, error) {
 	bodyStr = strings.TrimPrefix(bodyStr, "body={")
 	bodyStr = strings.TrimSuffix(bodyStr, "}")
 
-	// Convert the body map to JSON bytes
-	jsonBody, err := json.Marshal(bodyStr)
-	if err != nil {
-		return nil, fmt.Errorf("failed to marshal body as JSON: %w", err)
+	keyValuePairs := strings.Split(bodyStr, ",")
+
+	data := make(map[string]interface{})
+
+	for _, kvPair := range keyValuePairs {
+		parts := strings.Split(kvPair, ":")
+		if len(parts) != 2 {
+			return nil, fmt.Errorf("invalid body format")
+		}
+
+		key := strings.TrimSpace(parts[0])
+		value := strings.TrimSpace(parts[1])
+
+		data[key] = value
 	}
 
-	return jsonBody, nil
+	jsonData, err := json.Marshal(data)
+	if err != nil {
+		panic(err)
+	}
+
+	return jsonData, nil
 }
 
 func CleanInput(str string) []string {
