@@ -44,6 +44,21 @@ The general format of the command is:
 ```
 4- Run the tool without args to get a helpful message explaining how to use this tool.
 
+
+## Contributions
+
+Contributions are welcome! If you would like to contribute to this project, please follow these steps:
+
+   1- Fork the repository.
+   
+   2- Create a new branch for your feature or bug fix.
+   
+   3- Make the necessary changes and commit them.
+   
+   4- Push your changes to your fork.
+   
+   5- Submit a pull request describing your changes.
+
 ## License
 
 This project is licensed under the [MIT License](https://github.com/abdullah-alaadine/http-client/blob/main/LICENSE). See the [LICENSE](https://github.com/abdullah-alaadine/http-client/blob/main/LICENSE) file for details.
