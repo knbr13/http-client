@@ -7,47 +7,47 @@ import (
 )
 
 type httpCommand struct {
-	name        string
-	description string
-	run         func([]string) (*http.Response, error)
+	Name        string
+	Description string
+	Run         func([]string) (*http.Response, error)
 }
 
 func GetHttpCommands() map[string]httpCommand {
 	return map[string]httpCommand{
 		"httpget": {
-			name:        "httpget",
-			description: "Sends HTTP GET request",
-			run:         httpmethods.RunGet,
+			Name:        "httpget",
+			Description: "Sends HTTP GET request",
+			Run:         httpmethods.RunGet,
 		},
 		"httppost": {
-			name:        "httppost",
-			description: "Sends HTTP POST request",
-			run:         httpmethods.RunPost,
+			Name:        "httppost",
+			Description: "Sends HTTP POST request",
+			Run:         httpmethods.RunPost,
 		},
 		"httpput": {
-			name:        "httpput",
-			description: "Sends HTTP PUT request",
-			run:         httpmethods.RunPut,
+			Name:        "httpput",
+			Description: "Sends HTTP PUT request",
+			Run:         httpmethods.RunPut,
 		},
 		"httpdelete": {
-			name:        "httpdelete",
-			description: "Sends HTTP DELETE request",
-			run:         httpmethods.RunDelete,
+			Name:        "httpdelete",
+			Description: "Sends HTTP DELETE request",
+			Run:         httpmethods.RunDelete,
 		},
 		"httppatch": {
-			name:        "httppatch",
-			description: "Sends HTTP PATCH request",
-			run:         httpmethods.RunPatch,
+			Name:        "httppatch",
+			Description: "Sends HTTP PATCH request",
+			Run:         httpmethods.RunPatch,
 		},
 		"httpoptions": {
-			name:        "httpoptions",
-			description: "Sends HTTP OPTIONS request",
-			run:         httpmethods.RunOptions,
+			Name:        "httpoptions",
+			Description: "Sends HTTP OPTIONS request",
+			Run:         httpmethods.RunOptions,
 		},
 		"httphead": {
-			name:        "httphead",
-			description: "Sends HTTP HEAD request",
-			run:         httpmethods.RunHead,
+			Name:        "httphead",
+			Description: "Sends HTTP HEAD request",
+			Run:         httpmethods.RunHead,
 		},
 	}
 }
