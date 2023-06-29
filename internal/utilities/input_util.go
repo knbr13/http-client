@@ -75,9 +75,3 @@ func ParseBody(bodyStr string) ([]byte, error) {
 
 	return jsonData, nil
 }
-
-func CleanInput(str string) []string {
-	lowerCase := strings.ToLower(str)
-	words := strings.Fields(lowerCase)
-	return words
-}
