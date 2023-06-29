@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"net/http"
 	"os"
+	"strings"
 
 	"github.com/abdullah-alaadine/http-client/internal/commands"
 )
@@ -29,7 +31,7 @@ func main() {
 		switch command {
 		case "httphead":
 			// For HEAD request, only print the response status
-			fmt.Println(httpResponse.Header)
+			fmt.Println(formatHeaders(httpResponse.Header))
 		default:
 			// For other requests, print the response body
 			defer httpResponse.Body.Close()
@@ -64,4 +66,14 @@ Example:
 `
 
 	fmt.Println(helpMessage)
+}
+
+func formatHeaders(headers http.Header) string {
+	var formattedHeaders strings.Builder
+
+	for key, values := range headers {
+		formattedHeaders.WriteString(fmt.Sprintf("%s: %s\n", key, strings.Join(values, ", ")))
+	}
+
+	return formattedHeaders.String()
 }
