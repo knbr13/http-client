@@ -4,9 +4,7 @@ import (
 	"fmt"
 	"io"
 	"log"
-	"net/http"
 	"os"
-	"strings"
 
 	"github.com/abdullah-alaadine/http-client/internal/commands"
 )
@@ -66,14 +64,4 @@ Example:
 `
 
 	fmt.Println(helpMessage)
-}
-
-func formatHeaders(headers http.Header) string {
-	var formattedHeaders strings.Builder
-
-	for key, values := range headers {
-		formattedHeaders.WriteString(fmt.Sprintf("%s: %s\n", key, strings.Join(values, ", ")))
-	}
-
-	return formattedHeaders.String()
 }
