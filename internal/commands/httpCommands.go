@@ -12,6 +12,8 @@ type httpCommand struct {
 	Run         func([]string) (*http.Response, error)
 }
 
+// Commands are prefixed with http to add later commands that use protocol other than HTTP
+
 func GetHttpCommands() map[string]httpCommand {
 	return map[string]httpCommand{
 		"httpget": {
