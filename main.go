@@ -43,25 +43,3 @@ func main() {
 		log.Fatalf("Invalid command: %s", command)
 	}
 }
-
-func printHelpMessage() {
-	httpCommands := commands.GetHttpCommands()
-
-	helpMessage := `
-Usage: http-client [command] [arguments]
-
-Commands:`
-
-	for _, httpCommand := range httpCommands {
-		helpMessage += fmt.Sprintf("\n  %s\t%s", httpCommand.Name, httpCommand.Description)
-	}
-
-	helpMessage += `
-	
-Example:
-  http-client httpget http://example.com
-  http-client httppost http://example.com "body={key1: value, key2: value}"
-`
-
-	fmt.Println(helpMessage)
-}
