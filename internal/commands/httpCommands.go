@@ -12,7 +12,7 @@ type httpCommand struct {
 	run         func([]string) (*http.Response, error)
 }
 
-func getHttpCommands() map[string]httpCommand {
+func GetHttpCommands() map[string]httpCommand {
 	return map[string]httpCommand{
 		"httpget": {
 			name:        "httpget",
