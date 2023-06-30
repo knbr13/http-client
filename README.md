@@ -4,7 +4,8 @@ HTTP Client is a command-line tool for executing HTTP requests. It supports vari
 
 ## Screenshots:
 
-![http-client](https://raw.githubusercontent.com/abdullah-alaadine/http-client/main/assets/screenshot.png)
+![http-client](https://raw.githubusercontent.com/abdullah-alaadine/http-client/main/assets/screenshot1.png)
+![http-client](https://raw.githubusercontent.com/abdullah-alaadine/http-client/main/assets/screenshot2.png)
 
 ## Installation
 
