@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 	"strings"
@@ -49,6 +50,31 @@ func printColoredHeaders(headers map[string][]string) {
 			color.Cyan.Printf("%s\n", value)
 		}
 	}
+}
+
+// printColoredBody prints the colored JSON response body.
+func printColoredBody(body []byte) {
+	// Try parsing the body as a single JSON object
+	var data map[string]interface{}
+	err := json.Unmarshal(body, &data)
+	if err == nil {
+		printColoredJSONObject(data)
+		return
+	}
+
+	// Try parsing the body as an array of JSON objects
+	var arrayData []map[string]interface{}
+	err = json.Unmarshal(body, &arrayData)
+	if err == nil {
+		for _, obj := range arrayData {
+			printColoredJSONObject(obj)
+			fmt.Println()
+		}
+		return
+	}
+
+	// If parsing fails, print the raw body as plain text
+	fmt.Println(string(body))
 }
 
 func printColoredJSONObject(obj map[string]interface{}) {
