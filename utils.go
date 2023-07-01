@@ -50,3 +50,13 @@ func printColoredHeaders(headers map[string][]string) {
 		}
 	}
 }
+
+func printColoredJSONObject(obj map[string]interface{}) {
+	keyColor := color.New(color.FgYellow)
+	valueColor := color.New(color.FgCyan)
+
+	for key, value := range obj {
+		keyColor.Printf("%s: ", key)
+		valueColor.Println(value)
+	}
+}
