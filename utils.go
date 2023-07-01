@@ -11,21 +11,21 @@ import (
 func printHelpMessage() {
 	httpCommands := commands.GetHttpCommands()
 
-	helpMessage := `
+	helpMessage := color.FgCyan.Sprintf(`
 Usage: http-client [command] [arguments]
 
-Commands:`
+Commands:`)
 
 	for _, httpCommand := range httpCommands {
-		helpMessage += fmt.Sprintf("\n  %s\t%s", httpCommand.Name, httpCommand.Description)
+		helpMessage += fmt.Sprintf("\n  %s\t%s", color.FgYellow.Sprint(httpCommand.Name), httpCommand.Description)
 	}
 
-	helpMessage += `
+	helpMessage += color.FgCyan.Sprintf(`
 	
 Example:
   http-client httpget http://example.com
   http-client httppost http://example.com "body={key1: value, key2: value}"
-`
+`)
 
 	fmt.Println(helpMessage)
 }
