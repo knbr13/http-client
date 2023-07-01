@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"io"
 	"log"
 	"os"
@@ -29,7 +28,7 @@ func main() {
 		switch command {
 		case "httphead":
 			// For HEAD request, only print the response status
-			fmt.Println(formatHeaders(httpResponse.Header))
+			printColoredHeaders(httpResponse.Header)
 		default:
 			// For other requests, print the response body
 			defer httpResponse.Body.Close()
@@ -37,7 +36,7 @@ func main() {
 			if err != nil {
 				log.Fatal(err)
 			}
-			fmt.Println(string(body))
+			printColoredBody(body)
 		}
 	} else {
 		log.Fatalf("Invalid command: %s", command)
