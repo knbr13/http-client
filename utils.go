@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/abdullah-alaadine/http-client/internal/commands"
+	"github.com/gookit/color"
 )
 
 func formatHeaders(headers http.Header) string {
@@ -38,4 +39,14 @@ Example:
 `
 
 	fmt.Println(helpMessage)
+}
+
+func printColoredHeaders(headers map[string][]string) {
+	// Print headers with colors
+	for key, values := range headers {
+		for _, value := range values {
+			color.Bold.Printf("%s: ", key)
+			color.Cyan.Printf("%s\n", value)
+		}
+	}
 }
