@@ -3,22 +3,10 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"net/http"
-	"strings"
 
 	"github.com/abdullah-alaadine/http-client/internal/commands"
 	"github.com/gookit/color"
 )
-
-func formatHeaders(headers http.Header) string {
-	var formattedHeaders strings.Builder
-
-	for key, values := range headers {
-		formattedHeaders.WriteString(fmt.Sprintf("%s: %s\n", key, strings.Join(values, ", ")))
-	}
-
-	return formattedHeaders.String()
-}
 
 func printHelpMessage() {
 	httpCommands := commands.GetHttpCommands()
