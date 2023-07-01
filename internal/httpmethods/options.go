@@ -19,9 +19,6 @@ func RunOptions(input []string) (*http.Response, error) {
 
 // Options sends an HTTP OPTIONS request.
 func options(url string, headers map[string]string) (*http.Response, error) {
-	// Create a new HTTP client
-	httpClient := &http.Client{}
-
 	// Create an HTTP request
 	httpRequest, err := http.NewRequest(http.MethodOptions, url, nil)
 	if err != nil {

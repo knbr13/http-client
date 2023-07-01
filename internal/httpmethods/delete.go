@@ -19,9 +19,6 @@ func RunDelete(input []string) (*http.Response, error) {
 
 // Delete sends an HTTP DELETE request.
 func delete(url string, body []byte, headers map[string]string) (*http.Response, error) {
-	// Create a new HTTP client
-	httpClient := &http.Client{}
-
 	// Create an HTTP request
 	httpRequest, err := http.NewRequest(http.MethodDelete, url, nil)
 	if err != nil {

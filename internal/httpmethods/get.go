@@ -31,7 +31,6 @@ func get(url string, body []byte, headers map[string]string) (*http.Response, er
 	}
 
 	// Send the HTTP request
-	httpClient := &http.Client{}
 	httpResponse, err := httpClient.Do(httpRequest)
 	if err != nil {
 		return nil, err

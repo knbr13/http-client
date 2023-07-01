@@ -20,9 +20,6 @@ func RunPatch(input []string) (*http.Response, error) {
 
 // Patch sends an HTTP PATCH request.
 func patch(url string, body []byte, headers map[string]string) (*http.Response, error) {
-	// Create a new HTTP client
-	httpClient := &http.Client{}
-
 	// Create an HTTP request with the request body
 	httpRequest, err := http.NewRequest(http.MethodPatch, url, bytes.NewReader(body))
 	if err != nil {

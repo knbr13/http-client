@@ -19,9 +19,6 @@ func RunHead(input []string) (*http.Response, error) {
 
 // Head sends an HTTP HEAD request.
 func head(url string, headers map[string]string) (*http.Response, error) {
-	// Create a new HTTP client
-	httpClient := &http.Client{}
-
 	// Create an HTTP request
 	httpRequest, err := http.NewRequest(http.MethodHead, url, nil)
 	if err != nil {
