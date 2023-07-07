@@ -7,25 +7,23 @@ import (
 	"github.com/abdullah-alaadine/http-client/internal/utilities"
 )
 
-// RunGet executes the GET request using the provided input parameters.
-func RunGet(input []string) (*http.Response, error) {
-	url, headers, err := parseGetInput(input)
-	if err != nil {
-		return nil, err
+func get(input Input) (*http.Response, error) {
+	if input.HTTPMethod == "" || input.URL == "" {
+		return nil, fmt.Errorf("missing some required arguments")
 	}
 
-	return get(url, nil, headers)
-}
-
-// Get sends an HTTP GET request.
-func get(url string, body []byte, headers map[string]string) (*http.Response, error) {
 	// Create an HTTP request
-	httpRequest, err := http.NewRequest(http.MethodGet, url, nil)
+	httpRequest, err := http.NewRequest(http.MethodGet, input.URL, nil)
 	if err != nil {
 		return nil, err
 	}
 
 	// Set headers
+	headers, err := utilities.ParseHeaders(input.Header)
+	if err != nil {
+		return nil, err
+	}
+
 	for key, value := range headers {
 		httpRequest.Header.Set(key, value)
 	}
@@ -37,24 +35,4 @@ func get(url string, body []byte, headers map[string]string) (*http.Response, er
 	}
 
 	return httpResponse, nil
-}
-
-// parseGetInput parses the input slice for the GET command and extracts the URL and headers.
-func parseGetInput(input []string) (string, map[string]string, error) {
-	if len(input) < 1 || len(input) > 2 {
-		return "", nil, fmt.Errorf("invalid input for GET command")
-	}
-
-	url := input[0]
-	headersStr := ""
-	if len(input) == 2 {
-		headersStr = input[1]
-	}
-
-	headers, err := utilities.ParseHeaders(headersStr)
-	if err != nil {
-		return "", nil, err
-	}
-
-	return url, headers, nil
 }

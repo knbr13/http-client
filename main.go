@@ -3,42 +3,32 @@ package main
 import (
 	"io"
 	"log"
-	"os"
 
-	"github.com/abdullah-alaadine/http-client/internal/commands"
+	"github.com/abdullah-alaadine/http-client/internal/httpmethods"
+	"github.com/alexflint/go-arg"
 )
 
 func main() {
-	if len(os.Args) < 2 {
-		printHelpMessage()
-		return
+	input := httpmethods.Input{}
+	arg.MustParse(&input)
+
+	httpResponse, err := httpmethods.RunHttpMethod(input)
+	if err != nil {
+		log.Fatal(err)
 	}
 
-	httpCommands := commands.GetHttpCommands()
-	command := os.Args[1]
-
-	if httpCommand, ok := httpCommands[command]; ok {
-		args := os.Args[2:]
-		httpResponse, err := httpCommand.Run(args)
+	// Handle the HTTP response based on the command
+	switch input.HTTPMethod {
+	case "httphead":
+		// For HEAD request, only print the response status
+		printColoredHeaders(httpResponse.Header)
+	default:
+		// For other requests, print the response body
+		defer httpResponse.Body.Close()
+		body, err := io.ReadAll(httpResponse.Body)
 		if err != nil {
 			log.Fatal(err)
 		}
-
-		// Handle the HTTP response based on the command
-		switch command {
-		case "httphead":
-			// For HEAD request, only print the response status
-			printColoredHeaders(httpResponse.Header)
-		default:
-			// For other requests, print the response body
-			defer httpResponse.Body.Close()
-			body, err := io.ReadAll(httpResponse.Body)
-			if err != nil {
-				log.Fatal(err)
-			}
-			printColoredBody(body)
-		}
-	} else {
-		log.Fatalf("Invalid command: %s", command)
+		printColoredBody(body)
 	}
 }

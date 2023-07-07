@@ -4,31 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/abdullah-alaadine/http-client/internal/commands"
 	"github.com/gookit/color"
 )
-
-func printHelpMessage() {
-	httpCommands := commands.GetHttpCommands()
-
-	helpMessage := color.FgCyan.Sprintf(`
-Usage: http-client [command] [arguments]
-
-Commands:`)
-
-	for _, httpCommand := range httpCommands {
-		helpMessage += fmt.Sprintf("\n  %s\t%s", color.FgYellow.Sprint(httpCommand.Name), httpCommand.Description)
-	}
-
-	helpMessage += color.FgCyan.Sprintf(`
-	
-Example:
-  http-client httpget http://example.com
-  http-client httppost http://example.com "body={key1: value, key2: value}"
-`)
-
-	fmt.Println(helpMessage)
-}
 
 func printColoredHeaders(headers map[string][]string) {
 	// Print headers with colors

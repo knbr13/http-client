@@ -7,25 +7,23 @@ import (
 	"github.com/abdullah-alaadine/http-client/internal/utilities"
 )
 
-// RunOptions executes the OPTIONS request using the provided input parameters.
-func RunOptions(input []string) (*http.Response, error) {
-	url, headers, err := parseOptionsInput(input)
-	if err != nil {
-		return nil, err
+// Options sends an HTTP OPTIONS request.
+func options(input Input) (*http.Response, error) {
+	if input.HTTPMethod == "" || input.URL == "" {
+		return nil, fmt.Errorf("missing some required arguments")
 	}
 
-	return options(url, headers)
-}
-
-// Options sends an HTTP OPTIONS request.
-func options(url string, headers map[string]string) (*http.Response, error) {
 	// Create an HTTP request
-	httpRequest, err := http.NewRequest(http.MethodOptions, url, nil)
+	httpRequest, err := http.NewRequest(http.MethodOptions, input.URL, nil)
 	if err != nil {
 		return nil, err
 	}
 
 	// Set headers
+	headers, err := utilities.ParseHeaders(input.Header)
+	if err != nil {
+		return nil, err
+	}
 	for key, value := range headers {
 		httpRequest.Header.Set(key, value)
 	}
@@ -37,24 +35,4 @@ func options(url string, headers map[string]string) (*http.Response, error) {
 	}
 
 	return httpResponse, nil
-}
-
-// parseOptionsInput parses the input slice for the OPTIONS command and extracts the URL and headers.
-func parseOptionsInput(input []string) (string, map[string]string, error) {
-	if len(input) < 1 || len(input) > 2 {
-		return "", nil, fmt.Errorf("invalid input for OPTIONS command")
-	}
-
-	url := input[0]
-	headersStr := ""
-	if len(input) == 2 {
-		headersStr = input[1]
-	}
-
-	headers, err := utilities.ParseHeaders(headersStr)
-	if err != nil {
-		return "", nil, err
-	}
-
-	return url, headers, nil
 }
