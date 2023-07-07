@@ -13,37 +13,37 @@ type Command struct {
 }
 
 var AvailableHttpMethods = map[string]Command{
-	"GET": Command{
+	"GET": {
 		Name:  "GET",
 		Short: "Sends a GET request to a specified URL",
 		Run:   get,
 	},
-	"POST": Command{
+	"POST": {
 		Name:  "POST",
 		Short: "Sends a POST request to a specified URL",
 		Run:   post,
 	},
-	"PUT": Command{
+	"PUT": {
 		Name:  "PUT",
 		Short: "Sends a PUT request to a specified URL",
 		Run:   put,
 	},
-	"PATCH": Command{
+	"PATCH": {
 		Name:  "PATCH",
 		Short: "Sends a PATCH request to a specified URL",
 		Run:   patch,
 	},
-	"DELETE": Command{
+	"DELETE": {
 		Name:  "DELETE",
 		Short: "Sends a DELETE request to a specified URL",
 		Run:   delete,
 	},
-	"HEAD": Command{
+	"HEAD": {
 		Name:  "HEAD",
 		Short: "Sends a HEAD request to a specified URL",
 		Run:   head,
 	},
-	"OPTIONS": Command{
+	"OPTIONS": {
 		Name:  "OPTIONS",
 		Short: "Sends a OPTIONS request to a specified URL",
 		Run:   options,
