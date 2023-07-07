@@ -1,6 +1,7 @@
 package httpmethods
 
 import (
+	"fmt"
 	"net/http"
 	"time"
 )
@@ -58,4 +59,13 @@ type Input struct {
 
 var httpClient *http.Client = &http.Client{
 	Timeout: 30 * time.Second,
+}
+
+func RunHttpMethod(input Input) (*http.Response, error) {
+	command, ok := AvailableHttpMethods[input.HTTPMethod]
+	if !ok {
+		return nil, fmt.Errorf("unknown http method: %v", input.HTTPMethod)
+	}
+
+	return command.Run(input)
 }
