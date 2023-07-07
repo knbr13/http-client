@@ -1,2 +1,12 @@
-/vendor
+# Build file:
 *.exe
+*.o
+*.out
+
+*.app
+
+*.elf
+
+
+# Dependeny Directory
+vendor/
