@@ -3,6 +3,7 @@ package httpmethods
 import (
 	"fmt"
 	"net/http"
+	"strings"
 	"time"
 )
 
@@ -62,7 +63,7 @@ var httpClient *http.Client = &http.Client{
 }
 
 func RunHttpMethod(input Input) (*http.Response, error) {
-	command, ok := AvailableHttpMethods[input.HTTPMethod]
+	command, ok := AvailableHttpMethods[strings.ToUpper(input.HTTPMethod)]
 	if !ok {
 		return nil, fmt.Errorf("unknown http method: %v", input.HTTPMethod)
 	}
