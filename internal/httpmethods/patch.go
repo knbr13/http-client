@@ -23,8 +23,6 @@ func patch(input Input) (*http.Response, error) {
 		httpRequest.Header.Set(key, value)
 	}
 
-	httpRequest.Header.Set("Content-Type", "application/json")
-
 	// Send the HTTP request
 	httpResponse, err := httpClient.Do(httpRequest)
 	if err != nil {
