@@ -1,6 +1,7 @@
 package httpmethods
 
 import (
+	"fmt"
 	"net/http"
 	"strings"
 
@@ -8,6 +9,10 @@ import (
 )
 
 func patch(input Input) (*http.Response, error) {
+	if input.HTTPMethod == "" || input.URL == "" || input.Body == "" {
+		return nil, fmt.Errorf("missing some required arguments")
+	}
+
 	// Create an HTTP request with the request body
 	httpRequest, err := http.NewRequest(http.MethodPatch, input.URL, strings.NewReader(input.Body))
 	if err != nil {

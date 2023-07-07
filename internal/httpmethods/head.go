@@ -1,12 +1,17 @@
 package httpmethods
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/abdullah-alaadine/http-client/internal/utilities"
 )
 
 func head(input Input) (*http.Response, error) {
+	if input.HTTPMethod == "" || input.URL == "" {
+		return nil, fmt.Errorf("missing some required arguments")
+	}
+
 	// Create an HTTP request
 	httpRequest, err := http.NewRequest(http.MethodHead, input.URL, nil)
 	if err != nil {

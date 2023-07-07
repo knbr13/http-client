@@ -1,6 +1,7 @@
 package httpmethods
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/abdullah-alaadine/http-client/internal/utilities"
@@ -8,6 +9,10 @@ import (
 
 // Delete sends an HTTP DELETE request.
 func delete(input Input) (*http.Response, error) {
+	if input.HTTPMethod == "" || input.URL == "" {
+		return nil, fmt.Errorf("missing some required arguments")
+	}
+
 	// Create an HTTP request
 	httpRequest, err := http.NewRequest(http.MethodDelete, input.URL, nil)
 	if err != nil {
