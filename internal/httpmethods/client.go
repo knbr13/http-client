@@ -5,6 +5,16 @@ import (
 	"time"
 )
 
+var AvailableHttpMethods = map[string]bool{
+	"GET": true,
+	"POST": true,
+    "PUT": true,
+	"PATCH": true,
+    "DELETE": true,
+	"HEAD": true,
+    "OPTIONS": true,
+}
+
 type Input struct {
 	HTTPMethod string `arg:"-m,--http-method"`
 	URL        string `arg:"-u,--url"`
