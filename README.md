@@ -44,7 +44,7 @@ The general format of the command is:
   ./http-client -m DELETE -u http://example.com
 ```
 
-4- Send an HTTP GET request:
+4- Send an HTTP GET request and extract results to output file:
 
 ```bash
   ./http-client -m GET --url http://example.com -o data.json
