@@ -1,8 +1,11 @@
 package main
 
 import (
+	"bufio"
 	"encoding/json"
+	"errors"
 	"fmt"
+	"os"
 
 	"github.com/gookit/color"
 )
@@ -50,4 +53,29 @@ func printColoredJSONObject(obj map[string]interface{}) {
 		keyColor.Printf("%s: ", key)
 		valueColor.Println(value)
 	}
+}
+
+func writeToFile(fileName string, data []byte) error {
+	if fileName == "" {
+		return errors.New("missing file name")
+	}
+
+	file, err := os.OpenFile(fileName, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		return err
+	}
+
+	defer file.Close()
+
+	datawriter := bufio.NewWriter(file)
+
+	_, err = datawriter.WriteString(string(data))
+	if err != nil {
+		return err
+	}
+
+	color.Greenp("Saved to ", fileName, "\n")
+	datawriter.Flush()
+
+	return nil
 }

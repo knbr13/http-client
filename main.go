@@ -30,5 +30,9 @@ func main() {
 			log.Fatal(err)
 		}
 		printColoredBody(body)
+		err = writeToFile(input.Output, body)
+		if err != nil {
+			log.Fatal(err)
+		}
 	}
 }
