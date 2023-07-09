@@ -52,10 +52,11 @@ var AvailableHttpMethods = map[string]Command{
 }
 
 type Input struct {
-	HTTPMethod string `arg:"-m,--http-method"`
+	HTTPMethod string `arg:"-m,--http-method,required"`
 	URL        string `arg:"-u,--url"`
 	Body       string `arg:"-b,--body"`
 	Header     string `arg:"-H,--header"`
+	Output     string `arg:"-o"`
 }
 
 var httpClient *http.Client = &http.Client{

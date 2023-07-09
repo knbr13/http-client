@@ -23,7 +23,7 @@ HTTP Client is a command-line tool for executing HTTP requests. It supports vari
 
 The general format of the command is:
   ```shell
-  ./http-client -m [HTTP_Method] -b [body] -h [headers] -u [URL]
+  ./http-client -m [HTTP_Method] -b [body] -h [headers] -u [URL] -o [OUTPUT]
   ```
 ## Examples
 
@@ -43,7 +43,14 @@ The general format of the command is:
 ```bash
   ./http-client -m DELETE -u http://example.com
 ```
-4- Run the tool with `--help` arg to get a helpful message explaining how to use this tool.
+
+4- Send an HTTP GET request and extract results to output file:
+
+```bash
+  ./http-client -m GET --url http://example.com -o data.json
+```
+
+5- Run the tool with `--help` arg to get a helpful message explaining how to use this tool.
 
 
 ## Contributions
