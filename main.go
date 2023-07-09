@@ -3,6 +3,7 @@ package main
 import (
 	"io"
 	"log"
+	"strings"
 
 	"github.com/abdullah-alaadine/http-client/internal/httpmethods"
 	"github.com/alexflint/go-arg"
@@ -18,8 +19,8 @@ func main() {
 	}
 
 	// Handle the HTTP response based on the command
-	switch input.HTTPMethod {
-	case "httphead":
+	switch strings.ToLower(input.HTTPMethod) {
+	case "head":
 		// For HEAD request, only print the response status
 		printColoredHeaders(httpResponse.Header)
 	default:
