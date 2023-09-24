@@ -11,7 +11,6 @@ import (
 )
 
 func printColoredHeaders(headers map[string][]string) {
-	// Print headers with colors
 	for key, values := range headers {
 		for _, value := range values {
 			color.Bold.Printf("%s: ", key)
@@ -20,7 +19,6 @@ func printColoredHeaders(headers map[string][]string) {
 	}
 }
 
-// printColoredBody prints the colored JSON response body.
 func printColoredBody(body []byte) {
 	// Try parsing the body as a single JSON object
 	var data map[string]interface{}
@@ -67,15 +65,15 @@ func writeToFile(fileName string, data []byte) error {
 
 	defer file.Close()
 
-	datawriter := bufio.NewWriter(file)
+	dataWriter := bufio.NewWriter(file)
 
-	_, err = datawriter.WriteString(string(data))
+	_, err = dataWriter.WriteString(string(data))
 	if err != nil {
 		return err
 	}
 
 	color.Greenp("Saved to ", fileName, "\n")
-	datawriter.Flush()
+	dataWriter.Flush()
 
 	return nil
 }
