@@ -4,7 +4,7 @@ HTTP Client is a command-line tool for executing HTTP requests. It supports vari
 
 ## Screenshots:
 
-![http-client](./assets/http-client.png)
+![http-client](./http-client.png)
 
 ## Installation
 
