@@ -44,8 +44,8 @@ func printColoredBody(body []byte) {
 }
 
 func printColoredJSONObject(obj map[string]interface{}) {
-	keyColor := color.New(color.FgYellow)
-	valueColor := color.New(color.FgCyan)
+	keyColor := color.New(color.FgLightGreen)
+	valueColor := color.New(color.FgLightCyan)
 
 	for key, value := range obj {
 		keyColor.Printf("%s: ", key)
