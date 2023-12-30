@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/abdullah-alaadine/http-client/internal/utilities"
+	"github.com/knbr13/http-client/internal/utilities"
 )
 
 func head(input Input) (*http.Response, error) {

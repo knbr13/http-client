@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/abdullah-alaadine/http-client/internal/utilities"
+	"github.com/knbr13/http-client/internal/utilities"
 )
 
 func post(input Input) (*http.Response, error) {

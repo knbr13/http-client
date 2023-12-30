@@ -1,4 +1,4 @@
-module github.com/abdullah-alaadine/http-client
+module github.com/knbr13/http-client
 
 go 1.20
 

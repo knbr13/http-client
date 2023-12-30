@@ -5,7 +5,7 @@ import (
 	"log"
 	"strings"
 
-	"github.com/abdullah-alaadine/http-client/internal/httpmethods"
+	"github.com/knbr13/http-client/internal/httpmethods"
 	"github.com/alexflint/go-arg"
 )
 

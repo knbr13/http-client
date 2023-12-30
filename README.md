@@ -68,5 +68,5 @@ Contributions are welcome! If you would like to contribute to this project, plea
 
 ## License
 
-This project is licensed under the [MIT License](https://github.com/abdullah-alaadine/http-client/blob/main/LICENSE). See the [LICENSE](https://github.com/abdullah-alaadine/http-client/blob/main/LICENSE) file for details.
+This project is licensed under the [MIT License](https://github.com/knbr13/http-client/blob/main/LICENSE). See the [LICENSE](https://github.com/knbr13/http-client/blob/main/LICENSE) file for details.
 
