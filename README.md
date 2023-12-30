@@ -11,7 +11,7 @@ HTTP Client is a command-line tool for executing HTTP requests. It supports vari
 1. Clone the repository:
 
    ```shell
-   git clone https://github.com/your-username/http-client.git
+   git clone https://github.com/knbr13/http-client.git
    ```
 2. Build the project:
    ```shell
