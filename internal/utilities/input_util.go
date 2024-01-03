@@ -29,7 +29,7 @@ func ParseBody(bodyStr string) ([]byte, error) {
 	bodyStr = strings.TrimSpace(bodyStr)
 
 	if len(bodyStr) == 0 {
-		return nil, fmt.Errorf("body is required")
+		return []byte{}, nil
 	}
 
 	if !strings.HasPrefix(bodyStr, "body={") || !strings.HasSuffix(bodyStr, "}") {
