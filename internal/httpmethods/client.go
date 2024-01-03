@@ -3,6 +3,7 @@ package httpmethods
 import (
 	"fmt"
 	"net/http"
+	"slices"
 	"strings"
 	"time"
 )
@@ -13,47 +14,19 @@ type Command struct {
 	Run   func(Input) (*http.Response, error)
 }
 
-var AvailableHttpMethods = map[string]Command{
-	"GET": {
-		Name:  "GET",
-		Short: "Sends a GET request to a specified URL",
-		Run:   get,
-	},
-	"POST": {
-		Name:  "POST",
-		Short: "Sends a POST request to a specified URL",
-		Run:   post,
-	},
-	"PUT": {
-		Name:  "PUT",
-		Short: "Sends a PUT request to a specified URL",
-		Run:   put,
-	},
-	"PATCH": {
-		Name:  "PATCH",
-		Short: "Sends a PATCH request to a specified URL",
-		Run:   patch,
-	},
-	"DELETE": {
-		Name:  "DELETE",
-		Short: "Sends a DELETE request to a specified URL",
-		Run:   delete,
-	},
-	"HEAD": {
-		Name:  "HEAD",
-		Short: "Sends a HEAD request to a specified URL",
-		Run:   head,
-	},
-	"OPTIONS": {
-		Name:  "OPTIONS",
-		Short: "Sends a OPTIONS request to a specified URL",
-		Run:   options,
-	},
+var AvailableHttpMethods = []string{
+	"GET",
+	"POST",
+	"PUT",
+	"PATCH",
+	"DELETE",
+	"HEAD",
+	"OPTIONS",
 }
 
 type Input struct {
 	HTTPMethod string `arg:"-m,--http-method,required"`
-	URL        string `arg:"-u,--url"`
+	URL        string `arg:"-u,--url,required"`
 	Body       string `arg:"-b,--body"`
 	Header     string `arg:"-H,--header"`
 	Output     string `arg:"-o"`
@@ -64,10 +37,10 @@ var httpClient *http.Client = &http.Client{
 }
 
 func RunHttpMethod(input Input) (*http.Response, error) {
-	command, ok := AvailableHttpMethods[strings.ToUpper(input.HTTPMethod)]
-	if !ok {
+
+	if ok := slices.Contains(AvailableHttpMethods, strings.ToUpper(input.HTTPMethod)); !ok {
 		return nil, fmt.Errorf("unknown http method: %v", input.HTTPMethod)
 	}
 
-	return command.Run(input)
+	return exec(input)
 }
