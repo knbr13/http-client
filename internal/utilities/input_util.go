@@ -32,11 +32,11 @@ func ParseBody(bodyStr string) ([]byte, error) {
 		return []byte{}, nil
 	}
 
-	if !strings.HasPrefix(bodyStr, "body={") || !strings.HasSuffix(bodyStr, "}") {
+	if !strings.HasPrefix(bodyStr, "{") || !strings.HasSuffix(bodyStr, "}") {
 		return nil, fmt.Errorf("invalid body format: %s", bodyStr)
 	}
 
-	bodyStr = strings.TrimPrefix(bodyStr, "body={")
+	bodyStr = strings.TrimPrefix(bodyStr, "{")
 	bodyStr = strings.TrimSuffix(bodyStr, "}")
 
 	keyValuePairs := strings.Split(bodyStr, ",")
